@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Les Bateaux Guyane</title>
+</head>
+<body>
+<h1>La variété des bateaux pour la Guyane</h1>
+<p>Tous les types de fleuve en Guyane Française</p>
+</body>
+</html>
+
+
+----------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site Web</title>
+    <style>
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="accueil">
+        <h1>Bienvenue sur notre site !</h1>
+    </section>
+
+    <section id="apropos">
+        <h1>À propos de nous</h1>
+    </section>
+
+    <section id="contact">
+        <h1>Contactez-nous</h1>
+    </section>
+</body>
+</html>

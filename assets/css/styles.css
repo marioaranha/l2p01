@@ -1,0 +1,192 @@
+/* Variables globales */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --background-color: #f5f6faaf;
+  --background-guerre: #9ebaf0;
+  --background-navigation: #9398a5;
+  --card-background: #a54e42;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --container-max-width: 1200px;
+  --image-height: 200px;      /* Hauteur fixe pour les images */
+  --card-width: 220px;        /* Largeur des cartes */
+}
+
+/* Styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+/* En-tête */
+.header {
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Container principal */
+.sections-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+/* Sections */
+.section-guerre, 
+.section-navigation {
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.section-guerre {
+  background-color: var(--background-guerre);
+}
+
+.section-navigation {
+  background-color: var(--background-navigation);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* Grille d'images */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Conteneur de bateau */
+.bateau-container {
+  background: var(--card-background);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: var(--card-width);
+  margin: 0 auto;
+}
+
+.bateau-container:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Wrapper d'image */
+.image-wrapper {
+  width: 100%;
+  height: var(--image-height);
+  overflow: hidden;
+  position: relative;
+}
+
+.bateau-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bateau-container:hover .bateau-image {
+  transform: scale(1.05);
+}
+
+/* Informations de l'image */
+.image-info {
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.image-info h3 {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Message d'erreur */
+.notice {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fff3cd;
+  color: #856404;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  :root {
+      --card-width: 200px;
+      --image-height: 180px;
+  }
+  
+  .sections-container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+      --card-width: 180px;
+      --image-height: 160px;
+  }
+  
+  .header {
+      padding: 1.5rem;
+  }
+  
+  .section-title {
+      font-size: 1.3rem;
+  }
+  
+  .galerie {
+      gap: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+      --card-width: 150px;
+      --image-height: 140px;
+  }
+  
+  .sections-container {
+      padding: 0 0.5rem;
+  }
+  
+  .galerie {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
