@@ -5,11 +5,11 @@
   --background-color: #f5f6faaf;
   --background-guerre: #9ebaf0;
   --background-navigation: #9398a5;
-  --card-background: #a54e42;
+  --card-background: #4261a5;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --container-max-width: 1200px;
-  --image-height: 200px;      /* Hauteur fixe pour les images */
-  --card-width: 220px;        /* Largeur des cartes */
+  --card-width: auto;        /* Removemos a largura fixa */
+  --image-height: 180px;        /* Largeur des cartes */
 }
 
 /* Styles de base */
@@ -46,8 +46,8 @@ body {
 .sections-container {
   max-width: var(--container-max-width);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   padding: 0 1rem;
 }
@@ -78,21 +78,18 @@ body {
 /* Grille d'images */
 .galerie {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+  grid-template-rows: repeat(3, 1fr);    /* 3 linhas */
   gap: 1rem;
-  justify-content: center;
+  max-width: 800px;                      /* Controla a largura máxima */
+  margin: 0 auto;
 }
 
 /* Conteneur de bateau */
 .bateau-container {
-  background: var(--card-background);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: var(--card-width);
-  margin: 0 auto;
+  height: 100%;
+  margin: 0
 }
 
 .bateau-container:hover {
@@ -145,15 +142,24 @@ body {
 }
 
 /* Media Queries */
-@media (max-width: 1024px) {
-  :root {
-      --card-width: 200px;
-      --image-height: 180px;
+@media (max-width: 768px) {
+  .galerie {
+    grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas */
+    gap: 0.8rem;
   }
   
-  .sections-container {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+  :root {
+    --image-height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galerie {
+    grid-template-columns: repeat(1, 1fr); /* 1 coluna em telas muito pequenas */
+  }
+  
+  :root {
+    --image-height: 140px;
   }
 }
 

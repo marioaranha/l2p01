@@ -13,6 +13,13 @@ function getImagesFromDirectory($path) {
     return glob($path . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
 }
 
+function afficherGalerie($webPath, $images, $limit = 6) { // Limita a 6 imagens (3x2)
+    $images = array_slice($images, 0, $limit); // Pega apenas as primeiras 6 imagens
+    foreach ($images as $image) {
+        afficherImage($webPath, $image);
+    }
+}
+
 function afficherImage($webPath, $image) {
     $title = pathinfo($image, PATHINFO_FILENAME);
     echo "<div class='bateau-container'>";
@@ -25,6 +32,7 @@ function afficherImage($webPath, $image) {
     echo "</div>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,38 +50,35 @@ function afficherImage($webPath, $image) {
 
     <div class="sections-container">
         <!-- Section Bateaux de Guerre -->
-        <section class="section-guerre">
-            <h2 class="section-title">Bateaux de Guerre</h2>
-            <div class="galerie">
-                <?php
-                $imagesGuerre = getImagesFromDirectory(ASSETS_PATH_GUERRE);
-                if (!empty($imagesGuerre)) {
-                    foreach ($imagesGuerre as $image) {
-                        afficherImage(WEB_PATH_GUERRE, $image);
-                    }
-                } else {
-                    echo "<p class='notice'>Aucun bateau de guerre disponible</p>";
-                }
-                ?>
-            </div>
-        </section>
+        <!-- Section Bateaux de Guerre -->
+<section class="section-guerre">
+    <h2 class="section-title">Bateaux de Guerre</h2>
+    <div class="galerie">
+        <?php
+        $imagesGuerre = getImagesFromDirectory(ASSETS_PATH_GUERRE);
+        if (!empty($imagesGuerre)) {
+            afficherGalerie(WEB_PATH_GUERRE, $imagesGuerre);
+        } else {
+            echo "<p class='notice'>Aucun bateau de guerre disponible</p>";
+        }
+        ?>
+    </div>
+</section>
 
-        <!-- Section Bateaux de Navigation -->
-        <section class="section-navigation">
-            <h2 class="section-title">Bateaux de Navigation</h2>
-            <div class="galerie">
-                <?php
-                $imagesNavigation = getImagesFromDirectory(ASSETS_PATH_NAVIGATION);
-                if (!empty($imagesNavigation)) {
-                    foreach ($imagesNavigation as $image) {
-                        afficherImage(WEB_PATH_NAVIGATION, $image);
-                    }
-                } else {
-                    echo "<p class='notice'>Aucun bateau de navigation disponible</p>";
-                }
-                ?>
-            </div>
-        </section>
+<!-- Section Bateaux de Navigation -->
+<section class="section-navigation">
+    <h2 class="section-title">Bateaux de Navigation</h2>
+    <div class="galerie">
+        <?php
+        $imagesNavigation = getImagesFromDirectory(ASSETS_PATH_NAVIGATION);
+        if (!empty($imagesNavigation)) {
+            afficherGalerie(WEB_PATH_NAVIGATION, $imagesNavigation);
+        } else {
+            echo "<p class='notice'>Aucun bateau de navigation disponible</p>";
+        }
+        ?>
+    </div>
+</section>
     </div>
 
     <script>
