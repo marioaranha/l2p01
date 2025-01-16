@@ -1,0 +1,149 @@
+.promoN {
+    background: linear-gradient(135deg, rgba(64, 145, 180, 0.95), rgba(100, 180, 200, 0.9));
+    margin: 2rem auto;
+    border-radius: 15px;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+.promoN::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('path-to-waves.svg') repeat-x bottom;
+    opacity: 0.1;
+    animation: waveMove 20s linear infinite;
+}
+
+@keyframes waveMove {
+    from { background-position-x: 0; }
+    to { background-position-x: 1000px; }
+}
+
+.promoN-content {
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.promoN-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.promoN-description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+.promoN-description p {
+    margin-bottom: 1rem;
+    opacity: 0.95;
+}
+
+.promoN-description p:last-child {
+    margin-bottom: 0;
+}
+
+.promoN-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #4091b4;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.promoN-button:hover {
+    background-color: transparent;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Animation d'entrée avec effet de vague */
+@keyframes fadeInWave {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotate(1deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.promoN {
+    animation: fadeInWave 1s ease-out forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .promoN {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .promoN-description {
+        padding: 0 0.5rem;
+    }
+
+    .promoN-button {
+        padding: 0.7rem 1.5rem;
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .promoN {
+        padding: 1.5rem 1rem;
+    }
+
+    .promoN-title {
+        font-size: 1.5rem;
+    }
+
+    .promoN-description {
+        font-size: 1rem;
+    }
+}
+
+/* Effet de brillance subtil */
+.promoN::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    transform: rotate(30deg);
+    animation: shimmer 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    from { transform: rotate(30deg) translateY(0); }
+    to { transform: rotate(30deg) translateY(-50%); }
+}

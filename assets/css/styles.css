@@ -1,18 +1,20 @@
 /* Variables globales */
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #34495e;
-  --background-color: #f5f6faaf;
-  --background-guerre: #9ebaf0;
-  --background-navigation: #9398a5;
-  --card-background: #4261a5;
+  --primary-color: #2d3436;
+  --secondary-color: #636e72;
+  --accent-color-guerre: #e74c3c;
+  --accent-color-nav: #3498db;
+  --background-color: #f5f6fa;
+  --background-guerre: #96aee2;
+  --background-navigation: #f0f7ff;
+  --card-background: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --container-max-width: 1200px;
-  --card-width: auto;        /* Removemos a largura fixa */
-  --image-height: 180px;        /* Largeur des cartes */
+  --header-gradient: linear-gradient(135deg, #2d3436, #636e72);
+  --transition-default: all 0.3s ease;
 }
 
-/* Styles de base */
+/* Reset et base */
 * {
   margin: 0;
   padding: 0;
@@ -23,40 +25,85 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   background-color: var(--background-color);
-  padding: 20px;
-}
-
-/* En-tête */
-.header {
-  text-align: center;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px var(--shadow-color);
-}
-
-.header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Container principal */
-.sections-container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 0 1rem;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* Sections */
-.section-guerre, 
+/* Header et Navigation */
+.header {
+  background: var(--header-gradient);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.logo h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+
+.navigation {
+  width: 100%;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  list-style: none;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  transition: var(--transition-default);
+  font-weight: 500;
+}
+
+.menu a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.header-description {
+  color: white;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  text-align: center;
+  max-width: 800px;
+  opacity: 0.9;
+}
+
+/* Container principal et Sections */
+.sections-container {
+  max-width: var(--container-max-width);
+  margin: 2rem auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  width: 100%;
+  flex: 1;
+}
+
+.section-guerre,
 .section-navigation {
-  padding: 1.5rem;
-  border-radius: 10px;
+  margin-bottom: 3rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .section-guerre {
@@ -68,131 +115,187 @@ body {
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid currentColor;
   color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--primary-color);
 }
 
-/* Grille d'images */
+/* Galerie */
 .galerie {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-  grid-template-rows: repeat(3, 1fr);    /* 3 linhas */
-  gap: 1rem;
-  max-width: 800px;                      /* Controla a largura máxima */
-  margin: 0 auto;
-}
-
-/* Conteneur de bateau */
-.bateau-container {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   width: 100%;
-  height: 100%;
-  margin: 0
 }
 
-.bateau-container:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 15px var(--shadow-color);
+/* Cartes de bateaux */
+.bateau-container {
+  background: var(--card-background);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: var(--transition-default);
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Wrapper d'image */
 .image-wrapper {
   width: 100%;
-  height: var(--image-height);
-  overflow: hidden;
+  padding-top: 75%;
   position: relative;
+  overflow: hidden;
 }
 
 .bateau-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: var(--transition-default);
+}
+
+.image-info {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.image-info h3 {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Bouton de sélection */
+.btn-selection {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: var(--transition-default);
+  font-weight: 500;
+}
+
+.btn-selection:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  opacity: 0.9;
+}
+
+/* Effets et animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bateau-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .bateau-container:hover .bateau-image {
   transform: scale(1.05);
 }
 
-/* Informations de l'image */
-.image-info {
-  padding: 0.8rem;
-  text-align: center;
-}
-
-.image-info h3 {
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Message d'erreur */
-.notice {
-  text-align: center;
-  padding: 1rem;
-  background-color: #fff3cd;
-  color: #856404;
-  border-radius: 5px;
-  margin: 1rem 0;
-}
-
 /* Media Queries */
 @media (max-width: 768px) {
-  .galerie {
-    grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas */
-    gap: 0.8rem;
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
-  
-  :root {
-    --image-height: 160px;
+
+  .menu a {
+    width: 80%;
+    text-align: center;
+  }
+
+  .section-guerre,
+  .section-navigation {
+    padding: 1rem;
+  }
+
+  .galerie {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .galerie {
-    grid-template-columns: repeat(1, 1fr); /* 1 coluna em telas muito pequenas */
-  }
-  
-  :root {
-    --image-height: 140px;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-      --card-width: 180px;
-      --image-height: 160px;
-  }
-  
   .header {
-      padding: 1.5rem;
+    padding: 1rem;
   }
-  
-  .section-title {
-      font-size: 1.3rem;
+
+  .sections-container {
+    padding: 0.5rem;
+    margin: 1rem auto;
   }
-  
+
   .galerie {
-      gap: 0.8rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btn-selection {
+    width: 100%;
+    text-align: center;
   }
 }
 
-@media (max-width: 480px) {
-  :root {
-      --card-width: 150px;
-      --image-height: 140px;
-  }
-  
-  .sections-container {
-      padding: 0 0.5rem;
-  }
-  
-  .galerie {
-      grid-template-columns: repeat(2, 1fr);
-  }
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-error {
+  background-color: #ffe5e5;
+  color: #d63031;
+  border: 1px solid #ff7675;
+}
+
+.alert-success {
+  background-color: #e5ffe5;
+  color: #00b894;
+  border: 1px solid #55efc4;
+}
+
+.btn-selection.disabled {
+  background-color: #b2bec3;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-selection:hover:not(.disabled) {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }

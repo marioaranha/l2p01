@@ -1,0 +1,110 @@
+.promoG {
+    background: linear-gradient(135deg, rgba(0, 48, 73, 0.95), rgba(0, 32, 48, 0.9));
+    margin: 2rem auto;
+    border-radius: 15px;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 90%;
+}
+
+.promoG-content {
+    color: #ffffff;
+    text-align: center;
+}
+
+.promoG-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.promoG-description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+.promoG-description p {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.promoG-description p:last-child {
+    margin-bottom: 0;
+}
+
+.promoG-button {
+    display: inline-block;
+    background-color: #ffd700;
+    color: #003049;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.promoG-button:hover {
+    background-color: transparent;
+    border-color: #ffd700;
+    color: #ffd700;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Animation d'entrée */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.promoG {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .promoG {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .promoG-description {
+        padding: 0 0.5rem;
+    }
+
+    .promoG-button {
+        padding: 0.7rem 1.5rem;
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .promoG {
+        padding: 1.5rem 1rem;
+    }
+
+    .promoG-title {
+        font-size: 1.5rem;
+    }
+
+    .promoG-description {
+        font-size: 1rem;
+    }
+}
